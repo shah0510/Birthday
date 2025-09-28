@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Secret World — For Her</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- PORTAL / ENTRY -->
+  <div id="portal" class="screen active">
+    <div class="portal-inner">
+      <h1 class="portal-title">A secret world built just for you</h1>
+      <div class="portal-symbol">❤</div>
+      <p class="hint">Enter the magic word to enter</p>
+      <input id="magicInput" type="text" placeholder="Magic word..." aria-label="Magic word"/>
+      <button id="enterBtn">Enter</button>
+      <p class="small">If you already know the secret, type it. Otherwise, wait for your birthday clue 😉</p>
+    </div>
+    <div id="secretDot" title="secret room" class="secret-dot" aria-hidden="true"></div>
+  </div>
+
+  <!-- MAIN (hidden until portal opened) -->
+  <div id="main" class="screen">
+    <header class="topbar">
+      <nav>
+        <button data-target="map">Map</button>
+        <button data-target="gallery">Gallery</button>
+        <button data-target="sounds">Sounds</button>
+        <button data-target="envelopes">Envelopes</button>
+        <button data-target="game">Game</button>
+        <button data-target="stars">Stars</button>
+        <button data-target="treasure">Treasure</button>
+      </nav>
+      <div class="mini-brand">For ✦ Her</div>
+    </header>
+
+    <main id="content">
+      <!-- MAP -->
+      <section id="map" class="page active-page">
+        <h2>The Map of Us</h2>
+        <div class="map-wrap">
+          <svg id="mapSvg" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet">
+            <!-- simple illustrated map; icons clickable -->
+            <defs>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="3.5" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+
+            <rect width="100%" height="100%" fill="#0e1a2b"/>
+            <!-- path -->
+            <path d="M80,500 C260,420 420,520 600,380 C760,260 880,360 940,200" stroke="#c99" stroke-width="3" fill="none" opacity="0.6"/>
+            
+            <!-- nodes -->
+            <g class="mapnode" data-target="gallery" transform="translate(100,480)">
+              <circle r="20" fill="#ffb3c1" filter="url(#glow)"/>
+              <text x="40" y="6" class="maplabel">Where we met</text>
+            </g>
+
+            <g class="mapnode" data-target="sounds" transform="translate(420,520)">
+              <rect x="-18" y="-18" width="36" height="36" rx="8" fill="#ffd9a6" filter="url(#glow)"/>
+              <text x="40" y="6" class="maplabel">Our song</text>
+            </g>
+
+            <g class="mapnode" data-target="stars" transform="translate(700,360)">
+              <polygon points="-18,-18 18,-18 0,20" fill="#bfe8ff" filter="url(#glow)"/>
+              <text x="40" y="6" class="maplabel">The night sky</text>
+            </g>
+
+            <g class="mapnode" data-target="treasure" transform="translate(930,190)">
+              <circle r="20" fill="#f6f3c9" filter="url(#glow)"/>
+              <text x="-130" y="40" class="maplabel">A hidden treasure</text>
+            </g>
+          </svg>
+        </div>
+        <p class="small muted">Click the map icons to go to that room.</p>
+      </section>
+
+      <!-- GALLERY -->
+      <section id="gallery" class="page">
+        <h2>Gallery of Memories</h2>
+        <div class="gallery-grid" role="list">
+          <!-- Replace these src placeholders with your images -->
+          <div class="polaroid" tabindex="0">
+            <img src="images/image1.jpg" alt="Photo 1"/>
+            <div class="caption">My Favourite Photo</div>
+            <div class="hidden-note">I love you so much.</div>
+          </div>
+          <div class="polaroid" tabindex="0">
+            <img src="images/photo2.jpg" alt="Photo 2"/>
+            <div class="caption">That birthday evening</div>
+            <div class="hidden-note">The best time I had</div>
+          </div>
+          <div class="polaroid" tabindex="0">
+            <img src="images/photo3.jpg" alt="Photo 3"/>
+            <div class="caption">Sunset at the pier</div>
+            <div class="hidden-note">Promise we will be here again.</div>
+          </div>
+          <div class="polaroid" tabindex="0">
+            <img src="images/photo4.jpg" alt="Photo 3"/>
+            <div class="caption">Forever kisses</div>
+            <div class="hidden-note">Forever.</div>
+          </div>
+        </div>
+        
+      </section>
+
+      <!-- SOUNDS -->
+      <section id="sounds" class="page">
+        <h2>Sounds of Us</h2>
+        <div class="sounds-wrap">
+          <div class="record">
+            <div id="needle" class="needle"></div>
+            <div id="disc" class="disc"></div>
+          </div>
+          <div class="playlist">
+            <p>Playlist: <strong>Our Songs</strong></p>
+            <audio id="song1" src="audio/our-song.mp3" preload="none"></audio>
+            <button class="playBtn" data-audio="song1">Play our song</button>
+
+            <p>Voice messages</p>
+            <audio id="voice1" src="audio/voice1.mp3" preload="none"></audio>
+            <button class="playBtn" data-audio="voice1">Play a surprise message</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ENVELOPES -->
+      <section id="envelopes" class="page">
+        <h2>Messages for Every Mood</h2>
+        <div class="envelopes-grid">
+            <div class="envelope" data-media="videos/video1.mp4">
+                <img src="images/envelope.png" alt="envelope"/>
+                <div class="env-label">Open when you miss me</div>
+              </div>
+          <div class="envelope" data-media="videos/video2.mp4">
+            <img src="images/envelope2.png" alt="envelope"/>
+            <div class="env-label">Open when you're sad</div>
+          </div>
+          <div class="envelope" data-media="audio2.mp3">
+            <img src="images/envelope3.jpg" alt="envelope"/>
+            <div class="env-label">Open when you need a laugh</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GAME -->
+      
+     <section id="game" class="page">
+        <h2>The Little Game</h2>
+        <div class="quiz">
+          <p>How well do you know me?</p>
+          <ol>
+            <li>My favourite dessert? <br>
+              <button class="quizBtn" data-correct="false">Jalebi</button>
+              <button class="quizBtn" data-correct="true">Waffle</button>
+              <button class="quizBtn" data-correct="false">Cheesecake</button>
+            </li>
+            <li>My favourite food? <br>
+              <button class="quizBtn" data-correct="true">Pizza</button>
+              <button class="quizBtn" data-correct="false">Roti bhaji</button>
+              <button class="quizBtn" data-correct="false">Chole Kulche</button>
+            </li>
+            <li>My secret dream trip is to? <br>
+              <button class="quizBtn" data-correct="false">Norway</button>
+              <button class="quizBtn" data-correct="true">London</button>
+              <button class="quizBtn" data-correct="false">SriLanka</button>
+            </li>
+            <li>If I’m having a bad day, what’s my favourite thing to do to feel better? <br>
+                <button class="quizBtn" data-correct="false">Talk to you</button>
+                <button class="quizBtn" data-correct="true">Video call you</button>
+                <button class="quizBtn" data-correct="false">Listen songs</button>
+              </li>
+              <li>My favourite thing about you? <br>
+                <button class="quizBtn" data-correct="false">Eyes</button>
+                <button class="quizBtn" data-correct="false">Lips</button>
+                <button class="quizBtn" data-correct="true">Hand</button>
+              </li>
+          </ol>
+          <div id="quizResult" class="quizResult"></div>
+        </div>
+      </section> 
+
+
+      <!-- STARS -->
+      <section id="stars" class="page">
+        <h2>The Night Sky</h2>
+        <p class="muted">A little starfield from the night we first met.</p>
+        <canvas id="starCanvas" width="900" height="420" aria-label="star map"></canvas>
+        <div class="star-info">
+          <label>Enter date to regenerate (YYYY-MM-DD): <input id="starDate" type="date"></label>
+          <button id="generateStars">Generate</button>
+        </div>
+      </section>
+
+      <!-- TREASURE -->
+      <section id="treasure" class="page">
+        <h2>The Treasure Chest</h2>
+        <div class="treasure-wrap">
+          <div id="chest" class="chest closed" title="Treasure chest"></div>
+          <p id="treasureHint">This chest will open on <strong id="openDateText"></strong> or when the game is solved.</p>
+        </div>
+        <div id="treasureContent" class="treasureContent hidden">
+            <div class="voucher-box">
+                <h3>Surprise!</h3>
+                <p>Inside you find a little digital voucher and a promise: I will see you soon.</p>
+                <p>Here’s your digital gift:</p>
+                <a href="media/voucher.pdf" download="voucher.pdf" class="download-btn">
+                  Download Voucher
+                </a>
+              </div>
+        </div>
+        <div id="treasureSecretDot" class="secret-dot" title="Click for a bonus!" style="display:none;"></div>
+
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>Made with ♥ — open to new clues</div>
+      <div class="small muted">Tip: find the tiny secret dot for a bonus room.</div>
+    </footer>
+  </div>
+
+  <!-- MODALS / OVERLAYS -->
+  <div id="overlay" class="overlay hidden" role="dialog" aria-modal="true">
+    <div class="overlay-inner">
+      <button id="overlayClose" class="closeBtn">✕</button>
+      <div id="overlayContent"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

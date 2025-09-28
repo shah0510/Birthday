@@ -1,0 +1,246 @@
+:root{
+    --bg:#071122;
+    --card:#0f2233;
+    --accent:#ff9bb3;
+    --muted:#9fb1c6;
+    --glass: rgba(255,255,255,0.03);
+    --radius:14px;
+    --maxWidth:1100px;
+    --uiPadding:18px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background:linear-gradient(180deg,#031028 0%, #071122 100%);
+    color:#e6f0f6;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    display:flex;
+    align-items:stretch;
+    justify-content:center;
+    padding:30px 16px;
+  }
+  
+  /* SCREEN LAYOUT */
+  .screen{width:100%;max-width:var(--maxWidth);min-height:640px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);box-shadow:0 10px 40px rgba(2,6,12,0.6);overflow:hidden;position:relative}
+  .screen.active{outline:3px solid rgba(255,255,255,0.02)}
+  /* PORTAL */
+  #portal{display:flex;align-items:center;justify-content:center;padding:80px}
+  .portal-inner{text-align:center;max-width:680px}
+  .portal-title{font-size:30px;margin:0 0 6px}
+  .portal-symbol{font-size:80px;transform:rotate(-10deg);margin:8px 0}
+  .portal input[type="text"]{padding:12px 14px;border-radius:10px;border:none;background:var(--glass);color:var(--muted);width:220px;text-align:center}
+  .portal .small{opacity:0.7;color:var(--muted);font-size:13px}
+  #enterBtn{margin-top:12px;padding:10px 16px;border-radius:10px;border:none;background:var(--accent);color:#081226;font-weight:600;cursor:pointer}
+  
+  /* Topbar */
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:12px 22px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
+  .topbar nav button{background:transparent;border:none;color:var(--muted);padding:10px 12px;cursor:pointer;font-weight:600}
+  .topbar nav button:hover{color:var(--accent)}
+  .mini-brand{font-weight:700;color:var(--muted)}
+  
+  /* Content area */
+  #content{padding:24px}
+  .page{display:none}
+  .page.active-page{display:block}
+  
+  /* Map */
+  .map-wrap{background:linear-gradient(180deg,#07182a,#05111b);padding:12px;border-radius:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.02)}
+  #mapSvg{width:100%;height:360px;border-radius:8px}
+  .maplabel{fill:#cfd8e1;font-size:14px;font-weight:600}
+  .mapnode{cursor:pointer}
+  .mapnode:hover {transform:translateY(-4px);}
+  
+  /* Gallery */
+  .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:12px}
+  .polaroid{background:var(--card);padding:10px;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,0.5);position:relative;overflow:hidden;cursor:pointer}
+  .polaroid img{width:100%;height:180px;object-fit:cover;border-radius:8px}
+  .caption{margin-top:8px;color:var(--muted)}
+  .hidden-note{position:absolute;left:8px;top:8px;background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent);padding:8px;border-radius:8px;display:none;font-size:13px}
+  .polaroid:focus .hidden-note, .polaroid:hover .hidden-note{display:block}
+  
+  /* Sounds */
+  .sounds-wrap{display:flex;gap:22px;align-items:center}
+  .record{width:180px;height:180px;background:linear-gradient(180deg,#0f2436,#081220);border-radius:90px;position:relative;display:flex;align-items:center;justify-content:center;box-shadow:inset 0 6px 20px rgba(255,255,255,0.02)}
+  .disc{width:140px;height:140px;border-radius:70px;background:radial-gradient(circle at 30% 30%, #0b2a3a, #02050a);box-shadow:inset 0 2px 8px rgba(255,255,255,0.02)}
+  .needle{position:absolute;right:5px;top:8px;width:6px;height:70px;background:#c9c5c1;transform-origin:top;transform:rotate(-30deg);border-radius:4px}
+  
+  /* Envelopes */
+  .envelopes-grid{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px}
+  .envelope{width:160px;text-align:center;cursor:pointer}
+  .envelope img{width:120px;height:80px;object-fit:contain;display:block;margin:0 auto}
+  .env-label{margin-top:8px;color:var(--muted)}
+  
+  /* Quiz */
+  .quiz button{margin:6px 6px 6px 0;padding:8px 10px;border-radius:8px;border:none;background:var(--glass);color:var(--muted);cursor:pointer}
+  .quiz .quizResult{margin-top:12px;color:var(--accent);font-weight:700}
+  
+  /* Stars */
+  #starCanvas{display:block;width:100%;max-width:900px;height:240px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.5);margin-top:6px;background:linear-gradient(180deg,#010417,#031330)}
+  .star-info{margin-top:12px}
+  
+  /* Treasure */
+  .treasure-wrap{display:flex;flex-direction:column;align-items:center;gap:12px;padding:20px}
+  .chest{width:220px;height:140px;border-radius:10px;background:linear-gradient(180deg,#4b2b1f,#2b170f);box-shadow:0 8px 30px rgba(0,0,0,0.6);position:relative}
+ 
+  
+  .chest.closed::after{content:"";position:absolute;left:50%;top:28px;width:140px;height:8px;background:rgba(0,0,0,0.3);transform:translateX(-50%);border-radius:4px}
+  .chest.open{transform:translateY(-8px);box-shadow:0 24px 40px rgba(0,0,0,0.6)}
+  
+  /* overlay */
+  .overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(2,6,12,0.7), rgba(2,6,12,0.85));z-index:80}
+  .overlay .overlay-inner{background:var(--card);padding:18px;border-radius:12px;max-width:900px;width:94%;position:relative}
+  .closeBtn{position:absolute;right:10px;top:6px;border:none;background:transparent;color:#fff;font-size:20px;cursor:pointer}
+  
+  /* footer */
+  .footer{padding:12px 20px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);display:flex;justify-content:space-between;color:var(--muted);font-size:13px}
+  
+  /* small helpers */
+  .hidden{display:none}
+  .muted{color:var(--muted)}
+  .small{font-size:13px}
+  .secret-dot {
+    position: fixed;
+    bottom: 30px;   /* distance from bottom */
+    right: 50px;    /* distance from right */
+    width: 16px;    /* slightly bigger than before */
+    height: 16px;
+    border-radius: 50%;
+    background: #f5a623;  /* bright gold/yellow */
+    cursor: pointer;
+    z-index: 9999;
+    box-shadow: 0 0 8px #f5a623, 0 0 15px #ffecb3; /* glow effect */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 1; /* fully visible */
+    animation: pulse 1.5s infinite; /* gentle pulsing */
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); opacity:1; }
+    50% { transform: scale(1.4); opacity:0.7; }
+    100% { transform: scale(1); opacity:1; }
+  }
+
+  /* ---------- General styles ---------- */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    color: #4b3b2a; /* warm brown text */
+    background: linear-gradient(135deg, #f9f5ef 0%, #e9dfd1 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+  
+  /* ---------- Portal / Hero ---------- */
+  .hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .hero h1 {
+    font-size: 3rem;
+    letter-spacing: 3px;
+    color: #4b3b2a;
+    text-shadow: 0 0 8px rgba(248, 239, 226, 0.8);
+    margin-bottom: 20px;
+  }
+  
+  .hero button {
+    padding: 12px 30px;
+    background: #c8ab7f; /* beige-gold */
+    color: #fff;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(200,171,127,0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .hero button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(200,171,127,0.6);
+  }
+  
+  /* ---------- Section headers ---------- */
+  section {
+    padding: 80px 20px;
+    text-align: center;
+    background: rgba(255,255,255,0.4);
+    backdrop-filter: blur(3px);
+  }
+  
+  section h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #6b4f34; /* deeper brown */
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+  }
+  
+  /* ---------- Memory gallery ---------- */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .gallery img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(200,171,127,0.4);
+  }
+  
+  /* ---------- Treasure Chest Button ---------- */
+  .treasure {
+    padding: 15px 35px;
+    background: linear-gradient(135deg,#d4b78f,#b18c60);
+    border: none;
+    border-radius: 40px;
+    color: #fff;
+    font-size: 1.3rem;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(209,176,141,0.3);
+    transition: all 0.3s ease;
+  }
+  .treasure:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 0 25px rgba(209,176,141,0.5);
+  }
+  
+  /* ---------- Subtle texture overlay ---------- */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: transparent url('light-paper-texture.png') repeat;
+    opacity: 0.15;
+    z-index: -1;
+  }
+ 
+  #treasureSecretDot {
+    position: absolute;  /* relative to Treasure section */
+    bottom: 20px;
+    right: 30px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #f5a623;
+    cursor: pointer;
+    box-shadow: 0 0 8px #f5a623, 0 0 15px #ffecb3;
+    animation: pulse 1.5s infinite;
+    z-index: 10;
+  }
+
+  
+  
