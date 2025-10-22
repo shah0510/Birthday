@@ -8,7 +8,7 @@
 
 (() => {
     // ------- CONFIGURE -------
-    const magicWord = "m"; // change to your secret word
+    const magicWord = "meeya"; // change to your secret word
     const treasureOpenDate = new Date("2025-10-23T12:00:00"); // chest auto-opens on this date/time
     // --------------------------
   
