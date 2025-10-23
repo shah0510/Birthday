@@ -232,7 +232,7 @@
           overlayContent.innerHTML = `<h2>Bonus Room</h2>
             <p>Surprise! Another hidden video from me 🎁</p>
             <video controls autoplay style="width:100%">
-              <source src="media/bonus.mp4" type="video/mp4">
+              <source src="videos/video,mp4" type="video/mp4">
             </video>`;
           overlay.classList.remove('hidden');
         });
